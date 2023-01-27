@@ -1,14 +1,11 @@
 package models
 
-import java.util.UUID
-
 class JefeTaller(
-    id: UUID,
     nombre: String,
-    experiencia: Int,
-    salario: Int = 2500,
-    var personasACargo: Int
-):Persona(id, nombre, experiencia, salario) {
+    experiencia: Int
+):Persona(nombre, experiencia) {
+    private var personasACargo: Int = 0
+    override var salario: Int = 2500
     override fun toString(): String {
         return "Jefe de Taller -> id: $id, nombre: $nombre, experiencia: $experiencia años, salario: $salario€, personas a cargo: $personasACargo personas"
     }

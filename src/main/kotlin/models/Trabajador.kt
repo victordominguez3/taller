@@ -3,12 +3,12 @@ package models
 import java.util.UUID
 
 open class Trabajador(
-    id: UUID,
     nombre: String,
-    experiencia: Int,
-    salario: Int = 1200,
-    var horasDiarias: Int
-): Persona(id, nombre, experiencia, salario) {
+    experiencia: Int
+): Persona(nombre, experiencia) {
+
+    override var salario: Int = 1200
+    open var horasDiarias: Int = 8
 
     override fun toString(): String {
         return "Trabajador -> id: $id, nombre: $nombre, experiencia: $experiencia años, salario: $salario€, horas diarias: $horasDiarias horas"

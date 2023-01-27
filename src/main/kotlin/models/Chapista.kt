@@ -3,12 +3,12 @@ package models
 import java.util.*
 
 class Chapista(
-    id: UUID,
     nombre: String,
-    experiencia: Int,
-    salario: Int = 1200,
-    horasDiarias: Int
-): Trabajador(id, nombre, experiencia, salario, horasDiarias) {
+    experiencia: Int
+): Trabajador(nombre, experiencia) {
+
+    override var salario: Int = 1700
+    override var horasDiarias: Int = 7
 
     override fun toString(): String {
         return super.toString()
