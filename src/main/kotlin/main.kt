@@ -202,6 +202,7 @@ fun despedirPersona(plantilla: Array<Persona?>) {
         for (i in plantilla.indices) {
             if (plantilla[i] == trabajador) {
                 plantilla[i] = null
+                jefe.personasACargo--
                 println("\nTRABAJADOR DESPEDIDO")
             }
         }
@@ -302,6 +303,29 @@ fun numTrabajadoresDelJefe(plantilla: Array<Persona?>, jefe: JefeTaller): Int {
 
 fun contratarPersona(plantilla: Array<Persona?>) {
 
+    var jefe: JefeTaller
+    var persona: Persona
+
+    if (hayPlazasLibres(plantilla)) {
+        jefe = seleccionarJefe(plantilla) as JefeTaller
+        persona = PlantillaFactory.crearPersona()
+        if (persona is Trabajador) {
+            persona.jefe = jefe
+        }
+        jefe.personasACargo++
+        println("\nPERSONA CONTRATADA")
+        println(persona)
+
+    } else println("\nNo hay plazas libres")
+
+}
+
+fun hayPlazasLibres(plantilla: Array<Persona?>): Boolean {
+
+    for (i in plantilla) {
+        if (i == null) return true
+    }
+    return false
 }
 
 fun imprimirPlantilla(plantilla: Array<Persona?>) {

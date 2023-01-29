@@ -115,4 +115,35 @@ object PlantillaFactory {
             }
         }
     }
+
+    fun crearPersona(): Persona {
+
+        var tipo = elegirTipo()
+
+        when (tipo) {
+            "1" -> { return Trabajador(nombres.random(), apellidos.random(), rangoExp.random())}
+            "2" -> { return Electricista(nombres.random(), apellidos.random(), rangoExp.random())}
+            else -> { return Chapista(nombres.random(), apellidos.random(), rangoExp.random())
+            }
+        }
+    }
+
+    private fun elegirTipo(): String {
+
+        var resp: String
+        var respRegex = Regex("[1-3]")
+
+        println("\n1. Trabajador")
+        println("2. Electricista")
+        println("3. Chapista")
+
+        print("\nSeleccione un tipo: ")
+        resp = readln()
+        while (!respRegex.matches(resp)) {
+            print("Seleccione una acción válida: ")
+            resp = readln()
+        }
+
+        return resp
+    }
 }
