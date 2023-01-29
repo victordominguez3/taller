@@ -4,14 +4,16 @@ import java.util.*
 
 class Electricista(
     nombre: String,
+    apellido: String,
     experiencia: Int
-): Trabajador(nombre, experiencia) {
+): Trabajador(nombre, apellido, experiencia) {
 
     override var salario: Int = 1800
     override var horasDiarias: Int = 8
+    override lateinit var jefe: JefeTaller
 
     override fun toString(): String {
-        return super.toString()
+        return "Electricista -> id: $id, nombre: $nombre $apellido, experiencia: $experiencia años, salario: $salario€, horas diarias: $horasDiarias . JEFE: $jefe"
     }
 
     override fun saludar() {
@@ -23,6 +25,6 @@ class Electricista(
     }
 
     fun arreglarElectricidad() {
-        println("El electricista $nombre está arreglando electricidad...")
+        println("El electricista $nombre $apellido está arreglando electricidad...")
     }
 }

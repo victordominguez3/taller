@@ -4,14 +4,16 @@ import java.util.UUID
 
 open class Trabajador(
     nombre: String,
+    apellido: String,
     experiencia: Int
-): Persona(nombre, experiencia) {
+): Persona(nombre, apellido, experiencia) {
 
     override var salario: Int = 1200
     open var horasDiarias: Int = 8
+    open lateinit var jefe: JefeTaller
 
     override fun toString(): String {
-        return "Trabajador -> id: $id, nombre: $nombre, experiencia: $experiencia años, salario: $salario€, horas diarias: $horasDiarias horas"
+        return "Trabajador -> id: $id, nombre: $nombre $apellido, experiencia: $experiencia años, salario: $salario€, horas diarias: $horasDiarias horas. JEFE: $jefe"
     }
 
     override fun saludar() {
@@ -19,14 +21,14 @@ open class Trabajador(
     }
 
     fun trabajar() {
-        println("El trabajador $nombre está trabajando...")
+        println("El trabajador $nombre $apellido está trabajando...")
     }
 
     open fun descansar() {
-        println("El trabajador $nombre está descansando...")
+        println("El trabajador $nombre $apellido está descansando...")
     }
 
     fun comer() {
-        println("El trabajador $nombre está comiendo...")
+        println("El trabajador $nombre $apellido está comiendo...")
     }
 }
