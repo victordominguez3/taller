@@ -4,7 +4,7 @@ class JefeTaller(
     nombre: String,
     apellido: String,
     experiencia: Int
-):Persona(nombre, apellido, experiencia) {
+):Persona(nombre, apellido, experiencia){
     var personasACargo: Int = 0
     override var salario: Int = 2500
     override fun toString(): String {
@@ -15,8 +15,8 @@ class JefeTaller(
         println("$nombre $apellido dando latigazos")
     }
 
-    fun pagar() {
-
+    fun pagar(trabajador: Trabajador) {
+        println("$nombre $apellido pagando a ${trabajador.nombre} ${trabajador.apellido} su nómina de ${trabajador.salario}€")
     }
 
     override fun saludar() {

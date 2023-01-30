@@ -1,7 +1,5 @@
 package models
 
-import java.util.*
-
 class Electricista(
     nombre: String,
     apellido: String,

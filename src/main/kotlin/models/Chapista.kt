@@ -1,7 +1,5 @@
 package models
 
-import java.util.*
-
 class Chapista(
     nombre: String,
     apellido: String,

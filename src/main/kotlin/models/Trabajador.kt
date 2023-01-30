@@ -12,6 +12,15 @@ open class Trabajador(
     open var horasDiarias: Int = 8
     open lateinit var jefe: JefeTaller
 
+    constructor(
+        nombre: String,
+        apellido: String,
+        experiencia: Int,
+        jefe: JefeTaller
+    ): this(nombre, apellido, experiencia) {
+        this.jefe = jefe
+    }
+
     override fun toString(): String {
         return "Trabajador -> id: $id, nombre: $nombre $apellido, experiencia: $experiencia años, salario: $salario€, horas diarias: $horasDiarias horas. JEFE: $jefe"
     }

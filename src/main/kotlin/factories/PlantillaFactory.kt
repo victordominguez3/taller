@@ -88,23 +88,23 @@ object PlantillaFactory {
 
         for (i in plantilla) {
             if (i is Trabajador) {
-                i.jefe = plantilla[buscarJefe(plantilla)] as JefeTaller
+                i.jefe = buscarJefe(plantilla)
             }
         }
     }
 
-    private fun buscarJefe(plantilla: Array<Persona?>): Int {
+    private fun buscarJefe(plantilla: Array<Persona?>): JefeTaller {
 
         var num = -1
 
         do {
             num = (0 until PERSONAS).random()
             if (plantilla[num] is JefeTaller) {
-                return num
+                return plantilla[num] as JefeTaller
             }
         } while (num != -1) //Bucle infinito hasta que encuentre si o si un jefe
 
-        return num
+        return plantilla[0] as JefeTaller
     }
 
     private fun actualizarPersonasACargo(plantilla: Array<Persona?>) {
