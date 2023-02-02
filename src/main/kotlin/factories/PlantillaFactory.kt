@@ -49,6 +49,11 @@ object PlantillaFactory {
     val rangoExp = 1..10
     val rangoExpJefes = 11..20
 
+    /**
+     * Función que crea una plantilla aleatoria
+     * @return Plantilla - Array<Persona?>
+     */
+
     fun crearPlantilla(): Array<Persona?> {
 
         val plantilla = Array<Persona?>(PERSONAS) { null }
@@ -59,6 +64,11 @@ object PlantillaFactory {
 
         return plantilla
     }
+
+    /**
+     * Función que rellena la plantilla de forma aleatoria
+     * @param plantilla Array<Persona?>
+     */
 
     private fun rellenarPlantilla(plantilla: Array<Persona?>) {
 
@@ -84,6 +94,11 @@ object PlantillaFactory {
         }
     }
 
+    /**
+     * Función que asigna los jefes a los trabajadores
+     * @param plantilla Array<Persona?>
+     */
+
     private fun asignarJefes(plantilla: Array<Persona?>) {
 
         for (i in plantilla) {
@@ -92,6 +107,12 @@ object PlantillaFactory {
             }
         }
     }
+
+    /**
+     * Función que busca un jefe aleatorio en la plantilla
+     * @param plantilla Array<Persona?>
+     * @return jefe
+     */
 
     private fun buscarJefe(plantilla: Array<Persona?>): JefeTaller {
 
@@ -107,6 +128,11 @@ object PlantillaFactory {
         return plantilla[0] as JefeTaller
     }
 
+    /**
+     * Función que actualiza el campo "personasACargo" de los jefes
+     * @param plantilla Array<Persona?>
+     */
+
     private fun actualizarPersonasACargo(plantilla: Array<Persona?>) {
 
         for (i in plantilla) {
@@ -115,6 +141,11 @@ object PlantillaFactory {
             }
         }
     }
+
+    /**
+     * Función que crea una persona aleatoria entre Trabajador, Electricista o Chapista
+     * @return Persona
+     */
 
     fun crearPersona(): Persona {
 
@@ -127,6 +158,11 @@ object PlantillaFactory {
             }
         }
     }
+
+    /**
+     * Función MENU para elegir el tipo de trabajador
+     * @return String
+     */
 
     private fun elegirTipo(): String {
 

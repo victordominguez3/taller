@@ -10,7 +10,7 @@ fun main() {
     val respRegex = Regex("[1-8]")
     var plantilla: Array<Persona?> = PlantillaFactory.crearPlantilla()
 
-    println("SE HA CREADO UNA PLANTILLA ALEATORIA")
+    println("\nSE HA CREADO UNA PLANTILLA ALEATORIA")
 
     do {
         menu()

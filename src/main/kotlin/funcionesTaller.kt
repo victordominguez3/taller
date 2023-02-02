@@ -2,6 +2,10 @@ import factories.PlantillaFactory
 import models.*
 import java.lang.Exception
 
+/**
+ * Funcion que muestra por pantalla el menú
+ */
+
 fun menu() {
 
     println("\n---------- GESTIÓN DE LA PLANTILLA DE UN TALLER ----------")
@@ -15,6 +19,11 @@ fun menu() {
     println("8.\tSalir")
 
 }
+
+/**
+ * Funcion MENU para elegir el tipo de lista
+ * @param plantilla Array<Persona?>
+ */
 
 fun menuTipos(plantilla: Array<Persona?>) {
 
@@ -52,6 +61,11 @@ fun menuTipos(plantilla: Array<Persona?>) {
 
 }
 
+/**
+ * Funcion MENU para elegir el tipo de ordenación y ver la lista ordenada
+ * @param plantilla Array<Persona?>
+ */
+
 fun menuOrdenar(plantilla: Array<Persona?>) {
 
     var resp: String
@@ -72,16 +86,22 @@ fun menuOrdenar(plantilla: Array<Persona?>) {
         }
 
         when (resp) {
-            "1" -> ordenarExperienciaMenor(plantilla)
-            "2" -> ordenarExperienciaMayor(plantilla)
-            "3" -> ordenarSalarioMenor(plantilla)
-            "4" -> ordenarSalarioMayor(plantilla)
+            "1" -> imprimirPlantilla(ordenarExperiencia(plantilla))
+            "2" -> imprimirPlantilla(ordenarExperiencia(plantilla).reversedArray())
+            "3" -> imprimirPlantilla(ordenarSalario(plantilla))
+            "4" -> imprimirPlantilla(ordenarSalario(plantilla).reversedArray())
         }
 
     } while (resp != "5")
 }
 
-fun ordenarExperienciaMenor(plantilla: Array<Persona?>) {
+/**
+ * Función que ordena la plantilla de menor a mayor por experiencia
+ * @param plantilla Array<Persona?>
+ * @return Plantilla ordenada por experiencia
+ */
+
+fun ordenarExperiencia(plantilla: Array<Persona?>): Array<Persona?> {
 
     val plantillaOrdenada = plantilla
     var min = 0
@@ -100,10 +120,16 @@ fun ordenarExperienciaMenor(plantilla: Array<Persona?>) {
         plantillaOrdenada[min] = guardar
     }
 
-    imprimirPlantilla(plantillaOrdenada)
+    return plantillaOrdenada
 }
 
-fun ordenarSalarioMenor(plantilla: Array<Persona?>) {
+/**
+ * Función que ordena la plantilla de menor a mayor por salario
+ * @param plantilla Array<Persona?>
+ * @return Plantilla ordenada por salario
+ */
+
+fun ordenarSalario(plantilla: Array<Persona?>): Array<Persona?> {
 
     val plantillaOrdenada = plantilla
     var min = 0
@@ -121,51 +147,13 @@ fun ordenarSalarioMenor(plantilla: Array<Persona?>) {
         plantillaOrdenada[min] = guardar
     }
 
-    imprimirPlantilla(plantillaOrdenada)
+    return plantillaOrdenada
 }
 
-fun ordenarExperienciaMayor(plantilla: Array<Persona?>) {
-
-    val plantillaOrdenada = plantilla
-    var min = 0
-    var guardar: Persona?
-
-    for (i in 0 until plantillaOrdenada.size - 1) {
-        min = i
-        for (j in i+1 until plantillaOrdenada.size) {
-            if (plantillaOrdenada[i] != null && plantillaOrdenada[j] != null && plantillaOrdenada[j]!!.experiencia > plantillaOrdenada[min]!!.experiencia) {
-                min = j
-
-            }
-        }
-        guardar = plantillaOrdenada[i]
-        plantillaOrdenada[i] = plantillaOrdenada[min]
-        plantillaOrdenada[min] = guardar
-    }
-
-    imprimirPlantilla(plantillaOrdenada)
-}
-
-fun ordenarSalarioMayor(plantilla: Array<Persona?>) {
-
-    val plantillaOrdenada = plantilla
-    var min = 0
-    var guardar: Persona?
-
-    for (i in 0 until plantillaOrdenada.size - 1) {
-        min = i
-        for (j in i+1 until plantillaOrdenada.size) {
-            if (plantillaOrdenada[i] != null && plantillaOrdenada[j] != null && plantillaOrdenada[j]!!.salario > plantillaOrdenada[min]!!.salario) {
-                min = j
-            }
-        }
-        guardar = plantillaOrdenada[i]
-        plantillaOrdenada[i] = plantillaOrdenada[min]
-        plantillaOrdenada[min] = guardar
-    }
-
-    imprimirPlantilla(plantillaOrdenada)
-}
+/**
+ * Función MENU para elegir el tipo de sumatorio de nóminas
+ * @param plantilla Array<Persona?>
+ */
 
 fun menuNominas(plantilla: Array<Persona?>) {
 
@@ -201,6 +189,11 @@ fun menuNominas(plantilla: Array<Persona?>) {
 
 }
 
+/**
+ * Función para despedir un trabajador y ssacarlo de la plantilla
+ * @param plantilla Array<Persona?>
+ */
+
 fun despedirPersona(plantilla: Array<Persona?>) {
 
     var jefe: JefeTaller
@@ -211,7 +204,7 @@ fun despedirPersona(plantilla: Array<Persona?>) {
         trabajadorADespedir = seleccionarTrabajadorADespedir(plantilla, jefe) as Trabajador
 
         for (i in plantilla.indices) {
-            if (plantilla[i] == trabajadorADespedir) {
+            if (plantilla[i]!!.equals(trabajadorADespedir)) {
                 plantilla[i] = null
                 jefe.personasACargo--
                 println("\nTRABAJADOR DESPEDIDO")
@@ -221,6 +214,12 @@ fun despedirPersona(plantilla: Array<Persona?>) {
     } else println("\nNo hay trabajadores que despedir")
 
 }
+
+/**
+ * Función que devuelve si existen Trabajadores en la plantilla
+ * @param plantilla Array<Persona?>
+ * @return Boolean (True = Hay trabajadores, False = No hay Trabajadores)
+ */
 
 fun hayTrabajadores(plantilla: Array<Persona?>): Boolean {
 
@@ -232,6 +231,12 @@ fun hayTrabajadores(plantilla: Array<Persona?>): Boolean {
 
     return false
 }
+
+/**
+ * Función que sirve para seleccionar un jefe para despedir un trabajador a su cargo
+ * @param plantilla Array<Persona?>
+ * @return El jefe que va a despedir
+ */
 
 fun seleccionarJefe(plantilla: Array<Persona?>): Persona? {
 
@@ -270,6 +275,13 @@ fun seleccionarJefe(plantilla: Array<Persona?>): Persona? {
     return plantilla[arrayPos[resp-1]]
 }
 
+/**
+ * Función que sirve para elegir el trabajador que un jefe dado va a despedir
+ * @param plantilla Array<Persona?>
+ * @param jefe JefeTaller
+ * @return El trabajador a despedir
+ */
+
 fun seleccionarTrabajadorADespedir(plantilla: Array<Persona?>, jefe: JefeTaller): Persona? {
 
     val numTrabajadores = numTrabajadoresDelJefe(plantilla, jefe)
@@ -281,7 +293,7 @@ fun seleccionarTrabajadorADespedir(plantilla: Array<Persona?>, jefe: JefeTaller)
     println()
 
     for (i in plantilla.indices) {
-        if (plantilla[i] is Trabajador && (plantilla[i] as Trabajador).jefe == jefe) {
+        if (plantilla[i] is Trabajador && (plantilla[i] as Trabajador).jefe.equals(jefe)) {
             println("$cont ${plantilla[i]}")
             arrayPos[cont-1] = i
             cont++
@@ -304,17 +316,29 @@ fun seleccionarTrabajadorADespedir(plantilla: Array<Persona?>, jefe: JefeTaller)
     return plantilla[arrayPos[resp-1]]
 }
 
+/**
+ * Función que nos devuelve el número de trabajadores que tiene un jefe a su cargo
+ * @param plantilla Array<Persona?>
+ * @param jefe JefeTaller
+ * @return Número de trabajadores
+ */
+
 fun numTrabajadoresDelJefe(plantilla: Array<Persona?>, jefe: JefeTaller): Int {
 
     var cont = 0
 
     for (i in plantilla) {
-        if (i is Trabajador && i.jefe == jefe) {
+        if (i is Trabajador && i.jefe.equals(jefe)) {
             cont++
         }
     }
     return cont
 }
+
+/**
+ * Función que sirve para contratar una persona y añadirla a la plantilla
+ * @param plantilla Array<Persona?>
+ */
 
 fun contratarPersona(plantilla: Array<Persona?>) {
 
@@ -340,6 +364,12 @@ fun contratarPersona(plantilla: Array<Persona?>) {
 
 }
 
+/**
+ * Función que nos dice si hay plazas libres o no
+ * @param plantilla Array<Persona?>
+ * @return Boolean (True = Hay plaza libre, False = No hay plazas libres)
+ */
+
 fun hayPlazasLibres(plantilla: Array<Persona?>): Boolean {
 
     for (i in plantilla) {
@@ -347,6 +377,11 @@ fun hayPlazasLibres(plantilla: Array<Persona?>): Boolean {
     }
     return false
 }
+
+/**
+ * Función que muestra por pantalla la plantilla
+ * @param plantilla Array<Persona?>
+ */
 
 fun imprimirPlantilla(plantilla: Array<Persona?>) {
 
@@ -358,6 +393,11 @@ fun imprimirPlantilla(plantilla: Array<Persona?>) {
         }
     }
 }
+
+/**
+ * Función que muestra por pantalla los Jefes de la plantilla
+ * @param plantilla Array<Persona?>
+ */
 
 fun verJefes(plantilla: Array<Persona?>) {
 
@@ -371,6 +411,11 @@ fun verJefes(plantilla: Array<Persona?>) {
     }
 }
 
+/**
+ * Función que muestra por pantalla los Trabajadores de la plantilla
+ * @param plantilla Array<Persona?>
+ */
+
 fun verTrabajadores(plantilla: Array<Persona?>) {
 
     println("\nHay " + numTrabajadores(plantilla) + " trabajadores")
@@ -382,6 +427,11 @@ fun verTrabajadores(plantilla: Array<Persona?>) {
         }
     }
 }
+
+/**
+ * Función que muestra por pantalla los Trabjadores sin especialidad de la plantilla
+ * @param plantilla Array<Persona?>
+ */
 
 fun verTrabajadoresSinEspecialidad(plantilla: Array<Persona?>) {
 
@@ -395,6 +445,11 @@ fun verTrabajadoresSinEspecialidad(plantilla: Array<Persona?>) {
     }
 }
 
+/**
+ * Función que muestra por pantalla los Chapistas de la plantilla
+ * @param plantilla Array<Persona?>
+ */
+
 fun verChapistas(plantilla: Array<Persona?>) {
 
     println("\nHay " + numChapistas(plantilla) + " chapistas")
@@ -406,6 +461,11 @@ fun verChapistas(plantilla: Array<Persona?>) {
         }
     }
 }
+
+/**
+ * Función que muestra por pantalla los Electricistas de la plantilla
+ * @param plantilla Array<Persona?>
+ */
 
 fun verElectricistas(plantilla: Array<Persona?>) {
 
@@ -419,6 +479,11 @@ fun verElectricistas(plantilla: Array<Persona?>) {
     }
 }
 
+/**
+ * Función que muestra por pantalla los Trabjadores no chapistas de la plantilla
+ * @param plantilla Array<Persona?>
+ */
+
 fun verTrabajadoresNoChapistas(plantilla: Array<Persona?>) {
 
     println("\nHay " + numTrabajadoresNoChapistas(plantilla) + " trabajadores que no son chapistas")
@@ -430,6 +495,11 @@ fun verTrabajadoresNoChapistas(plantilla: Array<Persona?>) {
         }
     }
 }
+
+/**
+ * Función que muestra por pantalla los Trabjadores no electricistas de la plantilla
+ * @param plantilla Array<Persona?>
+ */
 
 fun verTrabajadoresNoElectricistas(plantilla: Array<Persona?>) {
 
@@ -443,6 +513,11 @@ fun verTrabajadoresNoElectricistas(plantilla: Array<Persona?>) {
     }
 }
 
+/**
+ * Función que sirve para ver el sumatorio de nóminas de todo el taller
+ * @param plantilla Array<Persona?>
+ */
+
 fun verSumatorio(plantilla: Array<Persona?>) {
 
     var suma = 0
@@ -453,6 +528,11 @@ fun verSumatorio(plantilla: Array<Persona?>) {
 
     println("\nLa suma de nóminas del taller es de $suma€")
 }
+
+/**
+ * Función que sirve para ver el sumatorio de nóminas de los Jefes
+ * @param plantilla Array<Persona?>
+ */
 
 fun verSumatorioJefesTaller(plantilla: Array<Persona?>) {
 
@@ -467,6 +547,11 @@ fun verSumatorioJefesTaller(plantilla: Array<Persona?>) {
     println("\nLa suma de nóminas de los jefes del taller es de $suma€")
 }
 
+/**
+ * Función que sirve para ver el sumatorio de nóminas de los Trabajadores sin especialidad
+ * @param plantilla Array<Persona?>
+ */
+
 fun verSumatorioTrabajadoresSinEspecialidad(plantilla: Array<Persona?>) {
 
     var suma = 0
@@ -479,6 +564,11 @@ fun verSumatorioTrabajadoresSinEspecialidad(plantilla: Array<Persona?>) {
 
     println("\nLa suma de nóminas de los trabajadores sin especialidad es de $suma€")
 }
+
+/**
+ * Función que sirve para ver el sumatorio de nóminas de los Chapistas
+ * @param plantilla Array<Persona?>
+ */
 
 fun verSumatorioChapistas(plantilla: Array<Persona?>) {
 
@@ -493,6 +583,11 @@ fun verSumatorioChapistas(plantilla: Array<Persona?>) {
     println("\nLa suma de nóminas de los chapistas es de $suma€")
 }
 
+/**
+ * Función que sirve para ver el sumatorio de nóminas de los Electricistas
+ * @param plantilla Array<Persona?>
+ */
+
 fun verSumatorioElectricistas(plantilla: Array<Persona?>) {
 
     var suma = 0
@@ -505,6 +600,11 @@ fun verSumatorioElectricistas(plantilla: Array<Persona?>) {
 
     println("\nLa suma de nóminas de los electricistas es de $suma€")
 }
+
+/**
+ * Función que sirve para ver el sumatorio de nóminas de todos los Trabajadores
+ * @param plantilla Array<Persona?>
+ */
 
 fun verSumatorioTrabajadores(plantilla: Array<Persona?>) {
 
@@ -519,6 +619,12 @@ fun verSumatorioTrabajadores(plantilla: Array<Persona?>) {
     println("\nLa suma de nóminas de todos los trabajadores es de $suma€")
 }
 
+/**
+ * Funcion que nos devuelve una cadena con el número de Jefes de taller
+ * @param plantilla Array<Persona?>
+ * @return String
+ */
+
 fun numJefesTaller(plantilla: Array<Persona?>): String {
 
     var cont = 0
@@ -530,6 +636,12 @@ fun numJefesTaller(plantilla: Array<Persona?>): String {
     }
     return "$cont"
 }
+
+/**
+ * Funcion que nos devuelve una cadena con el número de Trabajadores
+ * @param plantilla Array<Persona?>
+ * @return String
+ */
 
 fun numTrabajadores(plantilla: Array<Persona?>): String {
 
@@ -543,6 +655,12 @@ fun numTrabajadores(plantilla: Array<Persona?>): String {
     return "$cont"
 }
 
+/**
+ * Funcion que nos devuelve una cadena con el número de Trabjadores sin especialidad
+ * @param plantilla Array<Persona?>
+ * @return String
+ */
+
 fun numTrabajadoresSinEspecialidad(plantilla: Array<Persona?>): String {
 
     var cont = 0
@@ -554,6 +672,12 @@ fun numTrabajadoresSinEspecialidad(plantilla: Array<Persona?>): String {
     }
     return "$cont"
 }
+
+/**
+ * Funcion que nos devuelve una cadena con el número de Chapistas
+ * @param plantilla Array<Persona?>
+ * @return String
+ */
 
 fun numChapistas(plantilla: Array<Persona?>): String {
 
@@ -567,6 +691,12 @@ fun numChapistas(plantilla: Array<Persona?>): String {
     return "$cont"
 }
 
+/**
+ * Funcion que nos devuelve una cadena con el número de Electricistas
+ * @param plantilla Array<Persona?>
+ * @return String
+ */
+
 fun numElectricistas(plantilla: Array<Persona?>): String {
 
     var cont = 0
@@ -579,6 +709,12 @@ fun numElectricistas(plantilla: Array<Persona?>): String {
     return "$cont"
 }
 
+/**
+ * Funcion que nos devuelve una cadena con el número de Trabjadores no chapistas
+ * @param plantilla Array<Persona?>
+ * @return String
+ */
+
 fun numTrabajadoresNoChapistas(plantilla: Array<Persona?>): String {
 
     var cont = 0
@@ -590,6 +726,12 @@ fun numTrabajadoresNoChapistas(plantilla: Array<Persona?>): String {
     }
     return "$cont"
 }
+
+/**
+ * Funcion que nos devuelve una cadena con el número de Trabajadores no electricistas
+ * @param plantilla Array<Persona?>
+ * @return String
+ */
 
 fun numTrabajadoresNoElectricistas(plantilla: Array<Persona?>): String {
 
