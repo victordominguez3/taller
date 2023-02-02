@@ -1,5 +1,6 @@
 package models
 
+import colores
 import java.util.UUID
 
 open class Trabajador(
@@ -22,7 +23,13 @@ open class Trabajador(
     }
 
     override fun toString(): String {
-        return "Trabajador -> id: $id, nombre: $nombre $apellido, experiencia: $experiencia años, salario: $salario€, horas diarias: $horasDiarias horas. JEFE: $jefe"
+        return "${colores.rojo}Trabajador${colores.reset} -> " +
+                "${colores.morado}id:${colores.reset} $id, " +
+                "${colores.morado}nombre:${colores.reset} $nombre $apellido, " +
+                "${colores.morado}experiencia:${colores.reset} $experiencia años, " +
+                "${colores.morado}salario:${colores.reset} $salario€, " +
+                "${colores.morado}horas diarias:${colores.reset} $horasDiarias horas. " +
+                "${colores.morado}JEFE:${colores.reset} $jefe"
     }
 
     override fun equals(other: Any?): Boolean {

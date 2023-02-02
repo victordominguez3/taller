@@ -2,6 +2,8 @@ import factories.PlantillaFactory
 import models.*
 import java.lang.Exception
 
+val colores = Colores()
+
 /**
  * Funcion que muestra por pantalla el menú
  */
@@ -9,20 +11,20 @@ import java.lang.Exception
 fun menu() {
 
     println("\n---------- GESTIÓN DE LA PLANTILLA DE UN TALLER ----------")
-    println("1.\tCrear otra plantilla")
-    println("2.\tVer plantilla entera")
-    println("3.\tVer plantilla por tipos")
-    println("4.\tOrdenar plantilla")
-    println("5.\tVer sumario de nóminas")
-    println("6.\tDespedir a una persona")
-    println("7.\tContratar a una persona")
-    println("8.\tSalir")
+    println("${colores.azul}1.${colores.reset}\tCrear otra plantilla")
+    println("${colores.azul}2.${colores.reset}\tVer plantilla entera")
+    println("${colores.azul}3.${colores.reset}\tVer plantilla por tipos")
+    println("${colores.azul}4.${colores.reset}\tOrdenar plantilla")
+    println("${colores.azul}5.${colores.reset}\tVer sumario de nóminas")
+    println("${colores.azul}6.${colores.reset}\tDespedir a una persona")
+    println("${colores.azul}7.${colores.reset}\tContratar a una persona")
+    println("${colores.azul}8.${colores.reset}\tSalir")
 
 }
 
 /**
  * Funcion MENU para elegir el tipo de lista
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun menuTipos(plantilla: Array<Persona?>) {
@@ -31,19 +33,19 @@ fun menuTipos(plantilla: Array<Persona?>) {
     var respRegex = Regex("[1-8]")
 
     do {
-        println("\n1.\tVer jefes del taller")
-        println("2.\tVer trabajadores del taller")
-        println("3.\tVer trabajadores sin especialidad del taller")
-        println("4.\tVer chapistas del taller")
-        println("5.\tVer electricistas del taller")
-        println("6.\tVer trabajadores que no son chapistas del taller")
-        println("7.\tVer trabajadores que no son electricistas del taller")
-        println("8.\tVolver atrás")
+        println("\n${colores.azul}1.${colores.reset}\tVer jefes del taller")
+        println("${colores.azul}2.${colores.reset}\tVer trabajadores del taller")
+        println("${colores.azul}3.${colores.reset}\tVer trabajadores sin especialidad del taller")
+        println("${colores.azul}4.${colores.reset}\tVer chapistas del taller")
+        println("${colores.azul}5.${colores.reset}\tVer electricistas del taller")
+        println("${colores.azul}6.${colores.reset}\tVer trabajadores que no son chapistas del taller")
+        println("${colores.azul}7.${colores.reset}\tVer trabajadores que no son electricistas del taller")
+        println("${colores.azul}8.${colores.reset}\tVolver atrás")
 
-        print("\nSeleccione una acción: ")
+        print("\n${colores.verde}Seleccione una acción:${colores.reset} ")
         resp = readln()
         while (!respRegex.matches(resp)) {
-            print("Seleccione una acción válida: ")
+            print("${colores.rojo}Seleccione una acción válida:${colores.reset} ")
             resp = readln()
         }
 
@@ -63,7 +65,7 @@ fun menuTipos(plantilla: Array<Persona?>) {
 
 /**
  * Funcion MENU para elegir el tipo de ordenación y ver la lista ordenada
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun menuOrdenar(plantilla: Array<Persona?>) {
@@ -72,16 +74,16 @@ fun menuOrdenar(plantilla: Array<Persona?>) {
     var respRegex = Regex("[1-5]")
 
     do {
-        println("\n1.\tOrdenar por experiencia de menor a mayor")
-        println("2.\tOrdenar por experiencia de mayor a menor")
-        println("3.\tOrdenar por salario de menor a mayor")
-        println("4.\tOrdenar por salario de mayor a menor")
-        println("5.\tVolver atrás")
+        println("\n${colores.azul}1.${colores.reset}\tOrdenar por experiencia de menor a mayor")
+        println("${colores.azul}2.${colores.reset}\tOrdenar por experiencia de mayor a menor")
+        println("${colores.azul}3.${colores.reset}\tOrdenar por salario de menor a mayor")
+        println("${colores.azul}4.${colores.reset}\tOrdenar por salario de mayor a menor")
+        println("${colores.azul}5.${colores.reset}\tVolver atrás")
 
-        print("\nSeleccione una acción: ")
+        print("\n${colores.verde}Seleccione una acción:${colores.reset} ")
         resp = readln()
         while (!respRegex.matches(resp)) {
-            print("Seleccione una acción válida: ")
+            print("${colores.rojo}Seleccione una acción válida:${colores.reset} ")
             resp = readln()
         }
 
@@ -97,8 +99,8 @@ fun menuOrdenar(plantilla: Array<Persona?>) {
 
 /**
  * Función que ordena la plantilla de menor a mayor por experiencia
- * @param plantilla Array<Persona?>
- * @return Plantilla ordenada por experiencia
+ * @param plantilla la plantilla del taller
+ * @return la plantilla ordenada por experiencia
  */
 
 fun ordenarExperiencia(plantilla: Array<Persona?>): Array<Persona?> {
@@ -125,8 +127,8 @@ fun ordenarExperiencia(plantilla: Array<Persona?>): Array<Persona?> {
 
 /**
  * Función que ordena la plantilla de menor a mayor por salario
- * @param plantilla Array<Persona?>
- * @return Plantilla ordenada por salario
+ * @param plantilla la plantilla del taller
+ * @return la plantilla ordenada por salario
  */
 
 fun ordenarSalario(plantilla: Array<Persona?>): Array<Persona?> {
@@ -152,7 +154,7 @@ fun ordenarSalario(plantilla: Array<Persona?>): Array<Persona?> {
 
 /**
  * Función MENU para elegir el tipo de sumatorio de nóminas
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun menuNominas(plantilla: Array<Persona?>) {
@@ -161,18 +163,18 @@ fun menuNominas(plantilla: Array<Persona?>) {
     var respRegex = Regex("[1-7]")
 
     do {
-        println("\n1.\tVer el sumatorio de las nóminas del taller")
-        println("2.\tVer el sumatorio de las nóminas de los jefes del taller")
-        println("3.\tVer el sumatorio de las nóminas de los trabajadores sin especialidad")
-        println("4.\tVer el sumatorio de las nóminas de los chapistas")
-        println("5.\tVer el sumatorio de las nóminas de los electricistas")
-        println("6.\tVer el sumatorio de las nóminas de todos los trabajadores")
-        println("7.\tVolver atrás")
+        println("\n${colores.azul}1.${colores.reset}\tVer el sumatorio de las nóminas del taller")
+        println("${colores.azul}2.${colores.reset}\tVer el sumatorio de las nóminas de los jefes del taller")
+        println("${colores.azul}3.${colores.reset}\tVer el sumatorio de las nóminas de los trabajadores sin especialidad")
+        println("${colores.azul}4.${colores.reset}\tVer el sumatorio de las nóminas de los chapistas")
+        println("${colores.azul}5.${colores.reset}\tVer el sumatorio de las nóminas de los electricistas")
+        println("${colores.azul}6.${colores.reset}\tVer el sumatorio de las nóminas de todos los trabajadores")
+        println("${colores.azul}7.${colores.reset}\tVolver atrás")
 
-        print("\nSeleccione una acción: ")
+        print("\n${colores.verde}Seleccione una acción:${colores.reset} ")
         resp = readln()
         while (!respRegex.matches(resp)) {
-            print("Seleccione una acción válida: ")
+            print("${colores.rojo}Seleccione una acción válida:${colores.reset} ")
             resp = readln()
         }
 
@@ -191,7 +193,7 @@ fun menuNominas(plantilla: Array<Persona?>) {
 
 /**
  * Función para despedir un trabajador y ssacarlo de la plantilla
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun despedirPersona(plantilla: Array<Persona?>) {
@@ -207,17 +209,17 @@ fun despedirPersona(plantilla: Array<Persona?>) {
             if (plantilla[i]!!.equals(trabajadorADespedir)) {
                 plantilla[i] = null
                 jefe.personasACargo--
-                println("\nTRABAJADOR DESPEDIDO")
+                println("\n${colores.morado}TRABAJADOR DESPEDIDO${colores.reset}")
             }
         }
 
-    } else println("\nNo hay trabajadores que despedir")
+    } else println("\n${colores.morado}No hay trabajadores que despedir${colores.reset}")
 
 }
 
 /**
  * Función que devuelve si existen Trabajadores en la plantilla
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  * @return Boolean (True = Hay trabajadores, False = No hay Trabajadores)
  */
 
@@ -234,7 +236,7 @@ fun hayTrabajadores(plantilla: Array<Persona?>): Boolean {
 
 /**
  * Función que sirve para seleccionar un jefe para despedir un trabajador a su cargo
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  * @return El jefe que va a despedir
  */
 
@@ -257,17 +259,17 @@ fun seleccionarJefe(plantilla: Array<Persona?>): Persona? {
 
     do {
         try {
-            print("\nSeleccione un jefe: ")
+            print("\n${colores.morado}Seleccione un jefe:${colores.reset} ")
             resp = readln().toInt()
             while (resp !in 1..numJefes) {
-                print("Seleccione una acción válida: ")
+                print("${colores.rojo}Seleccione una acción válida:${colores.reset} ")
                 resp = readln().toInt()
             }
         } catch (e: Exception) {
-            println("Debe introducir un número")
+            println("${colores.rojo}Debe introducir un número${colores.reset}")
         }
         if ((plantilla[arrayPos[resp-1]] as JefeTaller).personasACargo == 0) {
-            println("\nEl jefe seleccionado no tiene personas a cargo")
+            println("\n${colores.morado}El jefe seleccionado no tiene personas a cargo${colores.reset}")
             resp = 0
         }
     } while (resp !in 1..numJefes)
@@ -277,8 +279,8 @@ fun seleccionarJefe(plantilla: Array<Persona?>): Persona? {
 
 /**
  * Función que sirve para elegir el trabajador que un jefe dado va a despedir
- * @param plantilla Array<Persona?>
- * @param jefe JefeTaller
+ * @param plantilla la plantilla del taller
+ * @param jefe el jefe que va a despedir
  * @return El trabajador a despedir
  */
 
@@ -289,7 +291,7 @@ fun seleccionarTrabajadorADespedir(plantilla: Array<Persona?>, jefe: JefeTaller)
     var cont = 1
     var arrayPos = Array<Int>(numTrabajadores) {-1}
 
-    println("\nPERSONAS A CARGO DEL $jefe")
+    println("\n${colores.morado}PERSONAS A CARGO DEL $jefe${colores.reset}")
     println()
 
     for (i in plantilla.indices) {
@@ -302,14 +304,14 @@ fun seleccionarTrabajadorADespedir(plantilla: Array<Persona?>, jefe: JefeTaller)
 
     do {
         try {
-            print("\nSeleccione un trabajador: ")
+            print("\n${colores.verde}Seleccione un trabajador:${colores.reset} ")
             resp = readln().toInt()
             while (resp !in 1..numTrabajadores) {
-                print("Seleccione una acción válida: ")
+                print("${colores.rojo}Seleccione una acción válida:${colores.reset} ")
                 resp = readln().toInt()
             }
         } catch (e: Exception) {
-            println("Debe introducir un número")
+            println("${colores.rojo}Debe introducir un número${colores.reset}")
         }
     } while (resp !in 1..numTrabajadores)
 
@@ -318,8 +320,8 @@ fun seleccionarTrabajadorADespedir(plantilla: Array<Persona?>, jefe: JefeTaller)
 
 /**
  * Función que nos devuelve el número de trabajadores que tiene un jefe a su cargo
- * @param plantilla Array<Persona?>
- * @param jefe JefeTaller
+ * @param plantilla la plantilla del taller
+ * @param jefe el jefe
  * @return Número de trabajadores
  */
 
@@ -337,7 +339,7 @@ fun numTrabajadoresDelJefe(plantilla: Array<Persona?>, jefe: JefeTaller): Int {
 
 /**
  * Función que sirve para contratar una persona y añadirla a la plantilla
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun contratarPersona(plantilla: Array<Persona?>) {
@@ -357,16 +359,16 @@ fun contratarPersona(plantilla: Array<Persona?>) {
         }
         if (persona is Trabajador) persona.jefe = jefe
         jefe.personasACargo++
-        println("\nPERSONA CONTRATADA")
+        println("\n${colores.morado}PERSONA CONTRATADA${colores.reset}")
         println(persona)
 
-    } else println("\nNo hay plazas libres")
+    } else println("\n${colores.morado}No hay plazas libres${colores.reset}")
 
 }
 
 /**
  * Función que nos dice si hay plazas libres o no
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  * @return Boolean (True = Hay plaza libre, False = No hay plazas libres)
  */
 
@@ -380,7 +382,7 @@ fun hayPlazasLibres(plantilla: Array<Persona?>): Boolean {
 
 /**
  * Función que muestra por pantalla la plantilla
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun imprimirPlantilla(plantilla: Array<Persona?>) {
@@ -396,12 +398,12 @@ fun imprimirPlantilla(plantilla: Array<Persona?>) {
 
 /**
  * Función que muestra por pantalla los Jefes de la plantilla
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verJefes(plantilla: Array<Persona?>) {
 
-    println("\nHay " + numJefesTaller(plantilla) + " jefes de taller")
+    println("\n${colores.morado}Hay " + numJefesTaller(plantilla) + " jefes de taller${colores.reset}")
     println()
 
     for (i in plantilla) {
@@ -413,12 +415,12 @@ fun verJefes(plantilla: Array<Persona?>) {
 
 /**
  * Función que muestra por pantalla los Trabajadores de la plantilla
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verTrabajadores(plantilla: Array<Persona?>) {
 
-    println("\nHay " + numTrabajadores(plantilla) + " trabajadores")
+    println("\n${colores.morado}Hay " + numTrabajadores(plantilla) + " trabajadores${colores.reset}")
     println()
 
     for (i in plantilla) {
@@ -430,12 +432,12 @@ fun verTrabajadores(plantilla: Array<Persona?>) {
 
 /**
  * Función que muestra por pantalla los Trabjadores sin especialidad de la plantilla
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verTrabajadoresSinEspecialidad(plantilla: Array<Persona?>) {
 
-    println("\nHay " + numTrabajadoresSinEspecialidad(plantilla) + " trabajadores sin especialidad")
+    println("\n${colores.morado}Hay " + numTrabajadoresSinEspecialidad(plantilla) + " trabajadores sin especialidad${colores.reset}")
     println()
 
     for (i in plantilla) {
@@ -447,12 +449,12 @@ fun verTrabajadoresSinEspecialidad(plantilla: Array<Persona?>) {
 
 /**
  * Función que muestra por pantalla los Chapistas de la plantilla
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verChapistas(plantilla: Array<Persona?>) {
 
-    println("\nHay " + numChapistas(plantilla) + " chapistas")
+    println("\n${colores.morado}Hay " + numChapistas(plantilla) + " chapistas${colores.reset}")
     println()
 
     for (i in plantilla) {
@@ -464,12 +466,12 @@ fun verChapistas(plantilla: Array<Persona?>) {
 
 /**
  * Función que muestra por pantalla los Electricistas de la plantilla
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verElectricistas(plantilla: Array<Persona?>) {
 
-    println("\nHay " + numElectricistas(plantilla) + " electricistas")
+    println("\n${colores.morado}Hay " + numElectricistas(plantilla) + " electricistas${colores.reset}")
     println()
 
     for (i in plantilla) {
@@ -481,12 +483,12 @@ fun verElectricistas(plantilla: Array<Persona?>) {
 
 /**
  * Función que muestra por pantalla los Trabjadores no chapistas de la plantilla
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verTrabajadoresNoChapistas(plantilla: Array<Persona?>) {
 
-    println("\nHay " + numTrabajadoresNoChapistas(plantilla) + " trabajadores que no son chapistas")
+    println("\n${colores.morado}Hay " + numTrabajadoresNoChapistas(plantilla) + " trabajadores que no son chapistas${colores.reset}")
     println()
 
     for (i in plantilla) {
@@ -498,12 +500,12 @@ fun verTrabajadoresNoChapistas(plantilla: Array<Persona?>) {
 
 /**
  * Función que muestra por pantalla los Trabjadores no electricistas de la plantilla
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verTrabajadoresNoElectricistas(plantilla: Array<Persona?>) {
 
-    println("\nHay " + numTrabajadoresNoElectricistas(plantilla) + " trabajadores que no son electricistas")
+    println("\n${colores.morado}Hay " + numTrabajadoresNoElectricistas(plantilla) + " trabajadores que no son electricistas${colores.reset}")
     println()
 
     for (i in plantilla) {
@@ -515,7 +517,7 @@ fun verTrabajadoresNoElectricistas(plantilla: Array<Persona?>) {
 
 /**
  * Función que sirve para ver el sumatorio de nóminas de todo el taller
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verSumatorio(plantilla: Array<Persona?>) {
@@ -526,12 +528,12 @@ fun verSumatorio(plantilla: Array<Persona?>) {
         if (i != null ) suma += i.salario
     }
 
-    println("\nLa suma de nóminas del taller es de $suma€")
+    println("\n${colores.morado}La suma de nóminas del taller es de $suma€${colores.reset}")
 }
 
 /**
  * Función que sirve para ver el sumatorio de nóminas de los Jefes
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verSumatorioJefesTaller(plantilla: Array<Persona?>) {
@@ -544,12 +546,12 @@ fun verSumatorioJefesTaller(plantilla: Array<Persona?>) {
         }
     }
 
-    println("\nLa suma de nóminas de los jefes del taller es de $suma€")
+    println("\n${colores.morado}La suma de nóminas de los jefes del taller es de $suma€${colores.reset}")
 }
 
 /**
  * Función que sirve para ver el sumatorio de nóminas de los Trabajadores sin especialidad
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verSumatorioTrabajadoresSinEspecialidad(plantilla: Array<Persona?>) {
@@ -562,12 +564,12 @@ fun verSumatorioTrabajadoresSinEspecialidad(plantilla: Array<Persona?>) {
         }
     }
 
-    println("\nLa suma de nóminas de los trabajadores sin especialidad es de $suma€")
+    println("\n${colores.morado}La suma de nóminas de los trabajadores sin especialidad es de $suma€${colores.reset}")
 }
 
 /**
  * Función que sirve para ver el sumatorio de nóminas de los Chapistas
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verSumatorioChapistas(plantilla: Array<Persona?>) {
@@ -580,12 +582,12 @@ fun verSumatorioChapistas(plantilla: Array<Persona?>) {
         }
     }
 
-    println("\nLa suma de nóminas de los chapistas es de $suma€")
+    println("\n${colores.morado}La suma de nóminas de los chapistas es de $suma€${colores.reset}")
 }
 
 /**
  * Función que sirve para ver el sumatorio de nóminas de los Electricistas
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verSumatorioElectricistas(plantilla: Array<Persona?>) {
@@ -598,12 +600,12 @@ fun verSumatorioElectricistas(plantilla: Array<Persona?>) {
         }
     }
 
-    println("\nLa suma de nóminas de los electricistas es de $suma€")
+    println("\n${colores.morado}La suma de nóminas de los electricistas es de $suma€${colores.reset}")
 }
 
 /**
  * Función que sirve para ver el sumatorio de nóminas de todos los Trabajadores
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  */
 
 fun verSumatorioTrabajadores(plantilla: Array<Persona?>) {
@@ -616,12 +618,12 @@ fun verSumatorioTrabajadores(plantilla: Array<Persona?>) {
         }
     }
 
-    println("\nLa suma de nóminas de todos los trabajadores es de $suma€")
+    println("\n${colores.morado}La suma de nóminas de todos los trabajadores es de $suma€${colores.reset}")
 }
 
 /**
  * Funcion que nos devuelve una cadena con el número de Jefes de taller
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  * @return String
  */
 
@@ -639,7 +641,7 @@ fun numJefesTaller(plantilla: Array<Persona?>): String {
 
 /**
  * Funcion que nos devuelve una cadena con el número de Trabajadores
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  * @return String
  */
 
@@ -657,7 +659,7 @@ fun numTrabajadores(plantilla: Array<Persona?>): String {
 
 /**
  * Funcion que nos devuelve una cadena con el número de Trabjadores sin especialidad
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  * @return String
  */
 
@@ -675,7 +677,7 @@ fun numTrabajadoresSinEspecialidad(plantilla: Array<Persona?>): String {
 
 /**
  * Funcion que nos devuelve una cadena con el número de Chapistas
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  * @return String
  */
 
@@ -693,7 +695,7 @@ fun numChapistas(plantilla: Array<Persona?>): String {
 
 /**
  * Funcion que nos devuelve una cadena con el número de Electricistas
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  * @return String
  */
 
@@ -710,8 +712,8 @@ fun numElectricistas(plantilla: Array<Persona?>): String {
 }
 
 /**
- * Funcion que nos devuelve una cadena con el número de Trabjadores no chapistas
- * @param plantilla Array<Persona?>
+ * Funcion que nos devuelve una cadena con el número de Trabajadores no chapistas
+ * @param plantilla la plantilla del taller
  * @return String
  */
 
@@ -729,7 +731,7 @@ fun numTrabajadoresNoChapistas(plantilla: Array<Persona?>): String {
 
 /**
  * Funcion que nos devuelve una cadena con el número de Trabajadores no electricistas
- * @param plantilla Array<Persona?>
+ * @param plantilla la plantilla del taller
  * @return String
  */
 

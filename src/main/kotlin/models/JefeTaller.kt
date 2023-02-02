@@ -1,5 +1,7 @@
 package models
 
+import colores
+
 class JefeTaller(
     nombre: String,
     apellido: String,
@@ -8,7 +10,12 @@ class JefeTaller(
     var personasACargo: Int = 0
     override var salario: Int = 2500
     override fun toString(): String {
-        return "Jefe de Taller -> id: $id, nombre: $nombre $apellido, experiencia: $experiencia años, salario: $salario€, personas a cargo: $personasACargo personas"
+        return "${colores.rojo}Jefe de Taller${colores.reset} -> " +
+                "${colores.morado}id:${colores.reset} $id, " +
+                "${colores.morado}nombre:${colores.reset} $nombre $apellido, " +
+                "${colores.morado}experiencia:${colores.reset} $experiencia años, " +
+                "${colores.morado}salario:${colores.reset} $salario€, " +
+                "${colores.morado}personas a cargo:${colores.reset} $personasACargo personas"
     }
 
     override fun equals(other: Any?): Boolean {

@@ -51,7 +51,7 @@ object PlantillaFactory {
 
     /**
      * Función que crea una plantilla aleatoria
-     * @return Plantilla - Array<Persona?>
+     * @return una plantilla aleatoria
      */
 
     fun crearPlantilla(): Array<Persona?> {
@@ -67,7 +67,7 @@ object PlantillaFactory {
 
     /**
      * Función que rellena la plantilla de forma aleatoria
-     * @param plantilla Array<Persona?>
+     * @param plantilla la plantilla del taller
      */
 
     private fun rellenarPlantilla(plantilla: Array<Persona?>) {
@@ -96,7 +96,7 @@ object PlantillaFactory {
 
     /**
      * Función que asigna los jefes a los trabajadores
-     * @param plantilla Array<Persona?>
+     * @param plantilla la plantilla del taller
      */
 
     private fun asignarJefes(plantilla: Array<Persona?>) {
@@ -110,8 +110,8 @@ object PlantillaFactory {
 
     /**
      * Función que busca un jefe aleatorio en la plantilla
-     * @param plantilla Array<Persona?>
-     * @return jefe
+     * @param plantilla la plantilla del taller
+     * @return el jefe aleatorio
      */
 
     private fun buscarJefe(plantilla: Array<Persona?>): JefeTaller {
@@ -130,7 +130,7 @@ object PlantillaFactory {
 
     /**
      * Función que actualiza el campo "personasACargo" de los jefes
-     * @param plantilla Array<Persona?>
+     * @param plantilla la plantilla del taller
      */
 
     private fun actualizarPersonasACargo(plantilla: Array<Persona?>) {
@@ -144,7 +144,7 @@ object PlantillaFactory {
 
     /**
      * Función que crea una persona aleatoria entre Trabajador, Electricista o Chapista
-     * @return Persona
+     * @return una persona aleatoria
      */
 
     fun crearPersona(): Persona {
@@ -161,7 +161,7 @@ object PlantillaFactory {
 
     /**
      * Función MENU para elegir el tipo de trabajador
-     * @return String
+     * @return respuesta a la selección del menú
      */
 
     private fun elegirTipo(): String {

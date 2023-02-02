@@ -1,5 +1,7 @@
 package models
 
+import colores
+
 class Electricista(
     nombre: String,
     apellido: String,
@@ -11,7 +13,13 @@ class Electricista(
     override lateinit var jefe: JefeTaller
 
     override fun toString(): String {
-        return "Electricista -> id: $id, nombre: $nombre $apellido, experiencia: $experiencia años, salario: $salario€, horas diarias: $horasDiarias . JEFE: $jefe"
+        return "${colores.rojo}Electricista${colores.reset} -> " +
+                "${colores.morado}id:${colores.reset} $id, " +
+                "${colores.morado}nombre:${colores.reset} $nombre $apellido, " +
+                "${colores.morado}experiencia:${colores.reset} $experiencia años, " +
+                "${colores.morado}salario:${colores.reset} $salario€, " +
+                "${colores.morado}horas diarias:${colores.reset} $horasDiarias horas. " +
+                "${colores.morado}JEFE:${colores.reset} $jefe"
     }
 
     override fun equals(other: Any?): Boolean {

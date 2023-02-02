@@ -10,15 +10,15 @@ fun main() {
     val respRegex = Regex("[1-8]")
     var plantilla: Array<Persona?> = PlantillaFactory.crearPlantilla()
 
-    println("\nSE HA CREADO UNA PLANTILLA ALEATORIA")
+    println("\n${colores.morado}SE HA CREADO UNA PLANTILLA ALEATORIA${colores.reset}")
 
     do {
         menu()
 
-        print("\nSeleccione una acción: ")
+        print("\n${colores.verde}Seleccione una acción:${colores.reset} ")
         resp = readln()
         while (!respRegex.matches(resp)) {
-            print("Seleccione una acción válida: ")
+            print("${colores.rojo}Seleccione una acción válida:${colores.reset} ")
             resp = readln()
         }
 
