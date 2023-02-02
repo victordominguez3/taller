@@ -14,6 +14,16 @@ class Chapista(
         return "Chapista -> id: $id, nombre: $nombre $apellido, experiencia: $experiencia años, salario: $salario€, horas diarias: $horasDiarias horas. JEFE: $jefe"
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Chapista) return false
+        return this.id == other.id && this.nombre == other.nombre && this.apellido == other.apellido && this.experiencia == other.experiencia && this.salario == other.salario
+    }
+
+    override fun hashCode(): Int {
+        return super.hashCode()
+    }
+
     override fun saludar() {
         super.saludar()
     }

@@ -11,6 +11,16 @@ class JefeTaller(
         return "Jefe de Taller -> id: $id, nombre: $nombre $apellido, experiencia: $experiencia años, salario: $salario€, personas a cargo: $personasACargo personas"
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is JefeTaller) return false
+        return this.id == other.id && this.nombre == other.nombre && this.apellido == other.apellido && this.experiencia == other.experiencia && this.salario == other.salario
+    }
+
+    override fun hashCode(): Int {
+        return super.hashCode()
+    }
+
     fun darLatigazos() {
         println("$nombre $apellido dando latigazos")
     }
