@@ -21,6 +21,7 @@ abstract class Persona(
         res = 31 * res + apellido.hashCode()
         res = 31 * res + experiencia.hashCode()
         res = 31 * res + salario.hashCode()
+        res = 31 * res + id.hashCode()
 
         return res
     }
